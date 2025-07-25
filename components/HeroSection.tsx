@@ -30,7 +30,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Changing Lives,
+            Impacting Lives
             <br className="mb-3 hidden md:block" />
             <span className="text-orange-300">One Child at a Time</span>
           </motion.h1>
