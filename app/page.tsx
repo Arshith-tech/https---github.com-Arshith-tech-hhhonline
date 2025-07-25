@@ -13,7 +13,7 @@ export default function Home() {
       <TestimonialsSection />
       <ProjectsWeSupport />
       <OrganizationsWeSupport />
-      
+      <AwardsSection />
     </>
   );
 }

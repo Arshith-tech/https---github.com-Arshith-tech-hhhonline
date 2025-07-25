@@ -3,14 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
-import { Jost } from 'next/font/google';
-
-// Import Jost font with needed weights
-const jost = Jost({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-});
 
 const TestimonialsSection = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -46,7 +38,6 @@ const TestimonialsSection = () => {
     }
   ];
 
-  // Auto-rotate testimonials every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -55,27 +46,15 @@ const TestimonialsSection = () => {
   }, [testimonials.length]);
 
   return (
-    <section
-      className={`${jost.className} relative py-20 text-white`}
-      style={{
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Background image with dark overlay to ensure white text pops */}
+    <section className="relative py-20 text-white" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Background image and overlays */}
       <div
         className="absolute inset-0 bg-center bg-cover z-0"
-        style={{
-          backgroundImage: "url('/orphan.jpg')",
-          filter: 'grayscale(100%)',
-        }}
+        style={{ backgroundImage: "url('/orphan.jpg')", filter: 'grayscale(100%)' }}
         aria-hidden="true"
       />
-      {/* Overlay for contrast */}
-      <div
-        className="absolute inset-0 bg-black bg-opacity-80 z-0"
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 bg-black bg-opacity-80 z-0" aria-hidden="true" />
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -83,8 +62,7 @@ const TestimonialsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
-            style={{ fontFamily: "'Jost', sans-serif" }}
+            className="text-center mb-16 serif"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Real Stories, Real Impact
@@ -94,7 +72,7 @@ const TestimonialsSection = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" style={{ fontFamily: "'Jost', sans-serif" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Images Section */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -108,13 +86,13 @@ const TestimonialsSection = () => {
                   <motion.div
                     key={index}
                     className={`relative overflow-hidden rounded-2xl transition-all duration-500 ${
-                      index === currentTestimonial 
-                        ? 'ring-4 ring-orange-500 scale-105' 
+                      index === currentTestimonial
+                        ? 'ring-4 ring-orange-500 scale-105'
                         : 'grayscale opacity-60'
                     }`}
                     animate={{
                       scale: index === currentTestimonial ? 1.05 : 1,
-                      opacity: index === currentTestimonial ? 1 : 0.6
+                      opacity: index === currentTestimonial ? 1 : 0.6,
                     }}
                     transition={{ duration: 0.5 }}
                   >
@@ -143,7 +121,6 @@ const TestimonialsSection = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               className="space-y-8"
-              style={{ fontFamily: "'Jost', sans-serif" }}
             >
               <div className="relative">
                 <Quote className="h-12 w-12 text-orange-500 mb-6" />
@@ -151,7 +128,7 @@ const TestimonialsSection = () => {
                   "{testimonials[currentTestimonial].quote}"
                 </blockquote>
               </div>
-              
+
               <div className="space-y-2">
                 <div className="text-xl font-bold text-white">
                   {testimonials[currentTestimonial].name}

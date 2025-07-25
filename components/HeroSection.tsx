@@ -3,28 +3,18 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
-import { Jost } from 'next/font/google';
-
-const jost = Jost({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-});
 
 const HeroSection = () => {
   return (
-    <section className={`${jost.className} relative min-h-screen flex items-center justify-center overflow-hidden`}>
-      {/* ✅ Background image from /public folder with consistent opacity */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background image with brightness filter */}
       <div
-  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-  style={{
-    backgroundImage: `url('/herobg.jpg')`,
-    filter: 'brightness(50%)',
-  }}
-/>
-
-
-      {/* ✅ Overlay removed (now handled by brightness utility above) */}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/herobg.jpg')`,
+          filter: 'brightness(50%)',
+        }}
+      />
 
       {/* Content */}
       <div className="relative z-20 text-center max-w-5xl mx-auto px-4">
@@ -35,20 +25,18 @@ const HeroSection = () => {
           className="space-y-6"
         >
           <motion.h1
-            className="text-5xl md:text-7xl font-bold text-white leading-tight"
-            style={{ fontFamily: "'Jost', sans-serif", fontWeight: 700 }}
+            className="serif text-5xl md:text-7xl font-bold text-white leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Changing Lives,
-            <br className="mb-3 hidden md:block" /> {/* ✅ Break and subtle gap between lines */}
+            <br className="mb-3 hidden md:block" />
             <span className="text-orange-300">One Child at a Time</span>
           </motion.h1>
 
           <motion.p
             className="text-xl md:text-2xl text-orange-100 max-w-3xl mx-auto leading-relaxed"
-            style={{ fontFamily: "'Jost', sans-serif", fontWeight: 400 }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}

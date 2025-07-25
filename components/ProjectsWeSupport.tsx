@@ -2,13 +2,6 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Jost } from 'next/font/google';
-
-const jost = Jost({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-});
 
 type SizeType = 'medium';
 
@@ -62,15 +55,15 @@ const sections: Section[] = [
 
 export default function ProjectsBentoSameSize() {
   return (
-    <section className={`${jost.className} py-20 bg-white`}>
+    <section className="py-20 bg-white">
       <div className="container mx-auto max-w-6xl px-4">
-        <h2 className="sans-serif text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-center">
+        <h2 className="serif text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-center">
           Projects We Support
         </h2>
 
         {/* Normal info text below heading, simple paragraphs in orange shade */}
         <div className="max-w-3xl mx-auto text-center mb-10">
-          <p className="sans-serif text-lg md:text-xl text-orange-600 mt-3 leading-relaxed">
+          <p className="text-lg md:text-xl text-orange-600 mt-3 leading-relaxed">
             We raise funds throughout the year to support various projects and needs of our differently abled children.
           </p>
         </div>
@@ -105,8 +98,8 @@ export default function ProjectsBentoSameSize() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none opacity-80 group-hover:opacity-90 transition-opacity" />
                 {/* Title at bottom center */}
                 <div
-                  className="absolute bottom-6 left-6  bg-white/80 backdrop-blur px-6 py-2 rounded-full shadow-md text-neutral-900 font-semibold text-lg tracking-wide group-hover:bg-orange-400 group-hover:text-white transition-all"
-                  style={{ fontFamily: "'Jost', sans-serif" }}
+                  className="absolute bottom-6 left-6 bg-white/80 backdrop-blur px-6 py-2 rounded-full shadow-md text-neutral-900 font-semibold text-lg tracking-wide group-hover:bg-orange-400 group-hover:text-white transition-all"
+                  style={{ fontFamily: `'Georgia', serif` }}
                 >
                   {title}
                 </div>
