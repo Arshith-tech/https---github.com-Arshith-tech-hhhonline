@@ -96,11 +96,11 @@ export default function GettingInvolvedPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 hover:shadow-lg transition-all transform hover:-translate-y-1"
+                className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-all transform hover:-translate-y-1"
               >
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
-                    <opportunity.icon className="h-6 w-6 text-blue-600" />
+                    <opportunity.icon className="h-6 w-6 text-orange-600" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{opportunity.title}</h3>
@@ -129,7 +129,7 @@ export default function GettingInvolvedPage() {
             className="text-center mt-12"
           >
             <Link href="/take-action/forms">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button size="lg" className="bg-orange-500 hover:bg-red-500 text-white">
                 Apply to Volunteer
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -139,7 +139,7 @@ export default function GettingInvolvedPage() {
       </section>
 
       {/* Membership Section */}
-      <section className="py-20 blue-gradient">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
             <motion.div
@@ -162,21 +162,21 @@ export default function GettingInvolvedPage() {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-700">Individual Membership</span>
-                    <span className="font-bold text-blue-600">$50/year</span>
+                    <span className="font-bold text-orange-600">$50/year</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-700">Family Membership</span>
-                    <span className="font-bold text-blue-600">$75/year</span>
+                    <span className="font-bold text-orange-600">$75/year</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-700">Student Membership</span>
-                    <span className="font-bold text-blue-600">$25/year</span>
+                    <span className="font-bold text-orange-600">$25/year</span>
                   </div>
                 </div>
               </div>
 
               <Link href="/take-action/membership">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Button size="lg" className="bg-orange-500 hover:bg-red-500 text-white">
                   Join Today
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -231,13 +231,13 @@ export default function GettingInvolvedPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-50">
+                <Button size="lg" variant="outline" className="bg-white text-orange-600 hover:bg-gray-50">
                   Get Started Today
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <a href="https://paypal.me/HHHOnline" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600">
+                <Button size="lg" variant="outline" className="bg-white text-orange-600 hover:bg-gray-50">
                   Make a Donation
                 </Button>
               </a>

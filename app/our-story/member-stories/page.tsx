@@ -145,7 +145,7 @@ export default function MemberStoriesPage() {
       </section>
 
       {/* Join Our Community */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -182,13 +182,13 @@ export default function MemberStoriesPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/take-action/membership">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
                   Become a Member
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <a href="https://paypal.me/HHHOnline" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="donate-gradient text-white">
+                <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
                   Start Your Impact
                 </Button>
               </a>

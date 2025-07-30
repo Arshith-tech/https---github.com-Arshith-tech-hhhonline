@@ -134,11 +134,11 @@ export default function OrganizationSelectionPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 hover:shadow-lg transition-all"
+                className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-all"
               >
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
-                    <criteria.icon className="h-6 w-6 text-blue-600" />
+                    <criteria.icon className="h-6 w-6 text-orange-500" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{criteria.title}</h3>

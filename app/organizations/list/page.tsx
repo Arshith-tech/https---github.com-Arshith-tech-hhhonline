@@ -83,7 +83,7 @@ export default function OrganizationsListPage() {
                 </Button>
               </a>
               <Link href="/organizations/selection">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600">
+                <Button size="lg" variant="outline" className="bg-white text-orange-600 hover:bg-gray-50">
                   Partnership Process
                 </Button>
               </Link>
