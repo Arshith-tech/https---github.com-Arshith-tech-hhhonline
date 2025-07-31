@@ -1,11 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useState } from 'react';
 import { FileText, Users, Heart, Send, Download } from 'lucide-react';
+import PdfIframeModal from '@/components/PdfIframeModal'; // Adjust the path accordingly
 
 export default function FormsPage() {
   const [activeForm, setActiveForm] = useState('volunteer');
@@ -20,6 +21,9 @@ export default function FormsPage() {
     motivation: '',
     references: ''
   });
+
+  // State for which PDF to show in modal
+  const [pdfToView, setPdfToView] = useState<null | { url: string; name: string }>(null);
 
   const forms = [
     {
@@ -45,30 +49,35 @@ export default function FormsPage() {
     }
   ];
 
+  // Added 'url' to each downloadable form (pointing to /public/forms/)
   const downloadableForms = [
     {
       name: 'Volunteer Background Check Form',
-      description: 'Required for all volunteer positions involving direct contact with children',
+      description: 'Required for all volunteer positions involving direct contact',
       type: 'PDF',
-      size: '245 KB'
+      size: '245 KB',
+      url: '/forms/volunteer-background-check-form.pdf'
     },
     {
       name: 'Corporate Matching Gift Form',
-      description: 'Help us process your employer\'s matching gift contribution',
+      description: "Help us process your employer's matching gift contribution",
       type: 'PDF',
-      size: '180 KB'
+      size: '180 KB',
+      url: '/forms/corporate-matching-gift-form.pdf'
     },
     {
       name: 'Tax Deduction Receipt Template',
       description: 'Template for tracking your charitable contributions',
       type: 'PDF',
-      size: '120 KB'
+      size: '120 KB',
+      url: '/forms/tax-deduction-receipt-template.pdf'
     }
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', { type: activeForm, data: formData });
+    // You can add real submission logic here
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -86,7 +95,7 @@ export default function FormsPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
             className="text-center max-w-4xl mx-auto"
           >
             <h1 className="serif text-5xl md:text-6xl font-bold text-gray-900 mb-6">
@@ -159,7 +168,7 @@ export default function FormsPage() {
             <h3 className="serif text-2xl font-bold text-gray-900 mb-6">
               {forms.find(f => f.id === activeForm)?.title}
             </h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -190,7 +199,7 @@ export default function FormsPage() {
                   />
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
@@ -218,7 +227,7 @@ export default function FormsPage() {
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label htmlFor="skills" className="block text-sm font-medium text-gray-700 mb-2">
                   Relevant Skills & Experience
@@ -232,7 +241,7 @@ export default function FormsPage() {
                   placeholder="Tell us about your relevant skills, experience, and qualifications..."
                 />
               </div>
-              
+
               <div>
                 <label htmlFor="motivation" className="block text-sm font-medium text-gray-700 mb-2">
                   Why do you want to get involved with HHH Online? *
@@ -247,7 +256,7 @@ export default function FormsPage() {
                   placeholder="Share your motivation and what you hope to contribute..."
                 />
               </div>
-              
+
               {activeForm === 'volunteer' && (
                 <div>
                   <label htmlFor="references" className="block text-sm font-medium text-gray-700 mb-2">
@@ -263,7 +272,7 @@ export default function FormsPage() {
                   />
                 </div>
               )}
-              
+
               <Button type="submit" size="lg" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
                 <Send className="mr-2 h-5 w-5" />
                 Submit Application
@@ -310,14 +319,27 @@ export default function FormsPage() {
                   <span className="text-sm text-gray-500">{form.type}</span>
                   <span className="text-sm text-gray-500">{form.size}</span>
                 </div>
-                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+                <Button
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                  onClick={() => setPdfToView({ url: form.url, name: form.name })}
+                >
                   <Download className="mr-2 h-4 w-4" />
-                  Download
+                  View / Download
                 </Button>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {/* PDF Viewer Modal */}
+        {pdfToView && (
+          <PdfIframeModal
+            url={pdfToView.url}
+            title={pdfToView.name}
+            open={!!pdfToView}
+            onClose={() => setPdfToView(null)}
+          />
+        )}
       </section>
     </div>
   );

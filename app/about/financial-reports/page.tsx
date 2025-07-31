@@ -1,10 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { FileText, Download, TrendingUp, PieChart, BarChart3, DollarSign } from 'lucide-react';
+import { FileText, Download, TrendingUp, PieChart, BarChart3, DollarSign, ArrowRight } from 'lucide-react';
+import PdfIframeModal from '@/components/PdfIframeModal'; // Adjust path if needed
+import Link from 'next/link';
 
 export default function FinancialReportsPage() {
+  // Updated reports array with url fields
   const reports = [
     {
       year: "2023",
@@ -12,7 +16,8 @@ export default function FinancialReportsPage() {
       description: "Complete audited financial statements including income, expenses, and impact metrics",
       type: "PDF",
       size: "3.2 MB",
-      highlights: ["$2.1M total revenue", "98% program efficiency", "45 projects funded"]
+      highlights: ["$2.1M total revenue", "98% program efficiency", "45 projects funded"],
+      url: "/reports/2023-annual-financial-report.pdf"
     },
     {
       year: "2022", 
@@ -20,7 +25,8 @@ export default function FinancialReportsPage() {
       description: "Comprehensive financial overview with detailed program expenditures and outcomes",
       type: "PDF",
       size: "2.8 MB",
-      highlights: ["$1.8M total revenue", "97% program efficiency", "38 projects funded"]
+      highlights: ["$1.8M total revenue", "97% program efficiency", "38 projects funded"],
+      url: "/reports/2022-annual-financial-report.pdf"
     },
     {
       year: "2021",
@@ -28,7 +34,8 @@ export default function FinancialReportsPage() {
       description: "Financial statements covering pandemic response and adapted program delivery",
       type: "PDF",
       size: "2.5 MB",
-      highlights: ["$1.5M total revenue", "96% program efficiency", "32 projects funded"]
+      highlights: ["$1.5M total revenue", "96% program efficiency", "32 projects funded"],
+      url: "/reports/2021-annual-financial-report.pdf"
     },
     {
       year: "2020",
@@ -36,7 +43,8 @@ export default function FinancialReportsPage() {
       description: "Financial data including emergency response initiatives and program pivots",
       type: "PDF", 
       size: "2.3 MB",
-      highlights: ["$1.2M total revenue", "95% program efficiency", "28 projects funded"]
+      highlights: ["$1.2M total revenue", "95% program efficiency", "28 projects funded"],
+      url: "/reports/2020-annual-financial-report.pdf"
     }
   ];
 
@@ -80,28 +88,8 @@ export default function FinancialReportsPage() {
     { category: "Administrative", percentage: 2, amount: "$42,000", color: "bg-gray-500" }
   ];
 
-  const auditInfo = [
-    {
-      title: "Independent Auditor",
-      value: "Johnson & Associates CPA",
-      description: "Certified Public Accounting Firm"
-    },
-    {
-      title: "Audit Opinion",
-      value: "Unqualified (Clean)",
-      description: "No material weaknesses found"
-    },
-    {
-      title: "Compliance Rating",
-      value: "100%",
-      description: "All regulatory requirements met"
-    },
-    {
-      title: "Transparency Score",
-      value: "A+",
-      description: "GuideStar Platinum Seal"
-    }
-  ];
+  // State for PDF viewer
+  const [pdfToView, setPdfToView] = useState<null | typeof reports[number]>(null);
 
   return (
     <div className="min-h-screen">
@@ -142,7 +130,6 @@ export default function FinancialReportsPage() {
               Our latest financial results demonstrate continued growth and exceptional efficiency in program delivery.
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {financialHighlights.map((highlight, index) => (
               <motion.div
@@ -151,7 +138,7 @@ export default function FinancialReportsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 text-center hover:shadow-lg transition-all"
+                className="bg-gray-50 rounded-2xl p-6 text-center hover:shadow-lg transition-all"
               >
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full mb-4">
                   <highlight.icon className="h-6 w-6 text-white" />
@@ -165,7 +152,6 @@ export default function FinancialReportsPage() {
               </motion.div>
             ))}
           </div>
-
           {/* Expense Breakdown */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -220,7 +206,6 @@ export default function FinancialReportsPage() {
               Download our complete audited financial statements for detailed insights into our financial health and program impact.
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {reports.map((report, index) => (
               <motion.div
@@ -242,7 +227,6 @@ export default function FinancialReportsPage() {
                     </div>
                     <h4 className="font-semibold text-gray-900 mb-2">{report.title}</h4>
                     <p className="text-gray-600 mb-4">{report.description}</p>
-                    
                     <div className="mb-4">
                       <h5 className="font-medium text-gray-900 mb-2">Key Highlights:</h5>
                       <ul className="space-y-1">
@@ -254,11 +238,16 @@ export default function FinancialReportsPage() {
                         ))}
                       </ul>
                     </div>
-                    
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Report
-                    </Button>
+                    <div className="flex flex-col gap-2">
+                      <Button 
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                        onClick={() => setPdfToView(report)}
+                      >
+                        <FileText className="mr-2 h-4 w-4" />
+                        View Report
+                      </Button>
+                     
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -267,45 +256,8 @@ export default function FinancialReportsPage() {
         </div>
       </section>
 
-      {/* Audit Information */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="serif text-4xl font-bold text-gray-900 mb-6">
-              Independent Audit Information
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our finances are independently audited annually to ensure accuracy, compliance, and transparency.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            {auditInfo.map((info, index) => (
-              <motion.div
-                key={info.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center p-6 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50"
-              >
-                <div className="text-2xl font-bold text-green-600 mb-2">{info.value}</div>
-                <div className="text-lg font-semibold text-gray-900 mb-1">{info.title}</div>
-                <div className="text-sm text-gray-600">{info.description}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-orange-500 to-red-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -323,18 +275,30 @@ export default function FinancialReportsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="https://paypal.me/HHHOnline" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-50">
+                <Button size="lg" className="bg-white text-orange-500 hover:bg-gray-100">
                   Make a Donation
-                  <DollarSign className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </a>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+              <Link href="/contact">
+              <Button size="lg" className="bg-white text-orange-500 hover:bg-gray-100">
                 Contact Our Finance Team
               </Button>
+            </Link>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* PDF Viewer Modal */}
+      {pdfToView && (
+        <PdfIframeModal
+          url={pdfToView.url}
+          title={`${pdfToView.year} ${pdfToView.title}`}
+          open={!!pdfToView}
+          onClose={() => setPdfToView(null)}
+        />
+      )}
     </div>
   );
 }

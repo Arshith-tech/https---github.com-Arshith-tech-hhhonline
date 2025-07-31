@@ -194,7 +194,7 @@ export default function TestimonialsPage() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-full font-bold text-lg transition-all"
+                  className="bg-white hover:bg-gray-100 dark:bg-bl text-orange-600 px-8 py-4 rounded-full font-bold text-lg transition-all"
                 >
                   Create Impact Today
                 </motion.button>

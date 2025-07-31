@@ -220,15 +220,6 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-
-              {/* Emergency Contact */}
-              <div className="mt-12 p-6 bg-red-50 rounded-xl border border-red-200">
-                <h3 className="font-semibold text-red-900 mb-2">Emergency Contact</h3>
-                <p className="text-red-700 text-sm">
-                  For urgent matters related to children's safety or emergency situations 
-                  in our supported communities, please call: <strong>(555) 999-0000</strong>
-                </p>
-              </div>
             </motion.div>
           </div>
         </div>
