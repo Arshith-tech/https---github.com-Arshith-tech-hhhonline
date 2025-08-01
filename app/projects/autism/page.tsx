@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Heart, Users, Target, MapPin, Calendar, ArrowRight, CheckCircle, Brain } from 'lucide-react';
+import { Heart, Users, MapPin, CheckCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export default function AutismPage() {
   const programs = [
@@ -29,119 +30,86 @@ export default function AutismPage() {
     }
   ];
 
-  const therapyApproaches = [
-    {
-      name: "Early Intervention",
-      description: "Critical support during ages 2-6 when brain plasticity is highest",
-      icon: "🧠"
-    },
-    {
-      name: "Social Skills Training",
-      description: "Group activities to develop peer interaction and communication",
-      icon: "👥"
-    },
-    {
-      name: "Family Training",
-      description: "Teaching parents and siblings effective interaction strategies",
-      icon: "👨‍👩‍👧‍👦"
-    },
-    {
-      name: "Sensory Support",
-      description: "Addressing sensory processing challenges through specialized therapy",
-      icon: "🎯"
-    }
-  ];
-
   const impactStats = [
-    { number: "405+", label: "Children in Programs", description: "Receiving autism support" },
-    { number: "78%", label: "Communication Improvement", description: "Within 12 months" },
-    { number: "15", label: "Therapy Centers", description: "Across 6 countries" },
-    { number: "$380K", label: "Annual Investment", description: "In autism programs" }
+    {
+      number: "1 in 44",
+      label: "Children Identified with ASD",
+      description: "In the U.S. (CDC estimate)"
+    },
+    {
+      number: "240K+",
+      label: "Children with ASD",
+      description: "Estimated in India"
+    },
+    {
+      number: "$200",
+      label: "Annual Support",
+      description: "Provides speech therapy & special education for a child"
+    },
+    {
+      number: "15+",
+      label: "Partner Centers",
+      description: "Across multiple countries"
+    }
   ];
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="hero-gradient py-20">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h1 className="serif text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Autism Support Programs
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
-              "Children with autism have unique gifts and perspectives that enrich our world. Our programs provide 
-              specialized therapy, education, and family support to help each child communicate, learn, and thrive."
-            </p>
-          </motion.div>
+
+{/* Hero Section */}
+<section className="hero-gradient py-20">
+  <div className="container mx-auto px-4">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="text-center max-w-4xl mx-auto"
+    >
+      <h1 className="serif text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+        Autism Support Programs
+      </h1>
+    </motion.div>
+  </div>
+</section>
+
+{/* Hero: Understanding Autism Spectrum Disorder */}
+<section className="py-20 bg-white">
+  <div className="container mx-auto px-4">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="max-w-3xl mx-auto text-center"
+    >
+      <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-6 mb-10">
+        <div className="bg-gray-50 rounded-2xl p-6 shadow flex-1">
+          <p className="text-2xl font-bold text-purple-700 mb-2">1 in 44</p>
+          <p className="text-gray-700">children in the US are diagnosed with Autism Spectrum Disorder</p>
         </div>
-      </section>
-
-      {/* Impact Statistics */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            {impactStats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50"
-              >
-                <div className="text-4xl font-bold text-purple-600 mb-2">{stat.number}</div>
-                <div className="text-lg font-semibold text-gray-900 mb-1">{stat.label}</div>
-                <div className="text-sm text-gray-600">{stat.description}</div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="bg-gray-50 rounded-2xl p-6 shadow flex-1">
+          <p className="text-2xl font-bold text-indigo-700 mb-2">240,000+</p>
+          <p className="text-gray-700">children are estimated to have autism in India</p>
         </div>
-      </section>
+      </div>
+      <p className="text-xl text-gray-800 mb-4">
+        Autism Spectrum Disorder is a neurological and developmental disorder that affects how a person interacts with others, communicates, learns, and behaves. It begins early in childhood and lasts throughout a person’s lifetime.
+      </p>
+      <p className="text-lg text-gray-700 mb-4">
+        Autistic children need intensive behavior modification, speech therapy, and special education. A donation of <span className="font-bold">$200</span> will provide an autistic child with speech therapy and special education in school for a year.
+      </p>
+      <div className="bg-orange-100 rounded-2xl p-6 mt-8 flex items-center justify-center gap-3 shadow">
+        <CheckCircle className="h-6 w-6 text-orange-500" />
+        <span className="text-lg font-semibold text-orange-700">
+          A donation of <span className="font-bold">$200</span> provides speech therapy and special education for a child with autism for a year.
+        </span>
+      </div>
+    </motion.div>
+  </div>
+</section>
 
-      {/* Therapy Approaches */}
-      <section className="py-20 blue-gradient">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="serif text-4xl font-bold text-gray-900 mb-6">
-              Our Therapy Approaches
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Evidence-based interventions tailored to each child's unique needs and strengths.
-            </p>
-          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {therapyApproaches.map((approach, index) => (
-              <motion.div
-                key={approach.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all"
-              >
-                <div className="text-4xl mb-4">{approach.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{approach.name}</h3>
-                <p className="text-gray-600 leading-relaxed">{approach.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Programs */}
-      <section className="py-20 bg-white">
+      {/* Programs Section */}
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -151,8 +119,11 @@ export default function AutismPage() {
             className="text-center mb-16"
           >
             <h2 className="serif text-4xl font-bold text-gray-900 mb-6">
-              Specialized Programs
+              Organizations We Support
             </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              We proudly partner with dedicated organizations transforming the lives of children with autism around the world.
+            </p>
           </motion.div>
 
           <div className="space-y-16">
@@ -165,6 +136,7 @@ export default function AutismPage() {
                 viewport={{ once: true }}
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}
               >
+                {/* Image */}
                 <div className={`relative ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                   <div className="relative rounded-2xl overflow-hidden shadow-xl">
                     <img
@@ -176,10 +148,11 @@ export default function AutismPage() {
                   </div>
                 </div>
 
+                {/* Content */}
                 <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
                   <h3 className="serif text-3xl font-bold text-gray-900">{program.title}</h3>
                   <p className="text-lg text-gray-700 leading-relaxed">{program.description}</p>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex items-center space-x-2">
                       <Users className="h-5 w-5 text-green-600" />
@@ -197,42 +170,41 @@ export default function AutismPage() {
         </div>
       </section>
 
-      {/* Success Story */}
-      <section className="py-20 bg-gray-50">
+      {/* Success Stories */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="serif text-4xl font-bold text-gray-900 mb-6">
+              Success Stories
+            </h2>
+          </motion.div>
+
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-xl"
+              className="bg-gray-50 rounded-2xl p-8"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <blockquote className="text-xl italic text-gray-800 mb-6">
+                "Before joining the HHH autism program, my son David rarely spoke and struggled with daily activities. After 18 months of ABA therapy and sensory support, he's now communicating in full sentences and has made his first friend at school. The transformation has been miraculous."
+              </blockquote>
+              <div className="flex items-center space-x-4">
+                <img
+                  src="https://images.pexels.com/photos/8363027/pexels-photo-8363027.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop"
+                  alt="Sarah Kim"
+                  className="w-16 h-16 rounded-full object-cover"
+                />
                 <div>
-                  <img
-                    src="https://images.pexels.com/photos/8363172/pexels-photo-8363172.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
-                    alt="Success story"
-                    className="w-full h-64 object-cover rounded-xl"
-                  />
-                </div>
-                <div>
-                  <blockquote className="text-lg italic text-gray-800 mb-6">
-                    "Before joining the HHH autism program, my son David rarely spoke and struggled with daily activities. 
-                    After 18 months of ABA therapy and sensory support, he's now communicating in full sentences and 
-                    has made his first friend at school. The transformation has been miraculous."
-                  </blockquote>
-                  <div className="flex items-center space-x-4">
-                    <img
-                      src="https://images.pexels.com/photos/8363027/pexels-photo-8363027.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&fit=crop"
-                      alt="Sarah Kim"
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                    <div>
-                      <div className="font-semibold text-gray-900">Sarah Kim</div>
-                      <div className="text-gray-600">Mother of David, age 7</div>
-                    </div>
-                  </div>
+                  <div className="font-semibold text-gray-900">Sarah Kim</div>
+                  <div className="text-gray-600">Mother of David, age 7</div>
                 </div>
               </div>
             </motion.div>
@@ -241,7 +213,7 @@ export default function AutismPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-purple-600 to-indigo-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-orange-500 to-red-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -251,22 +223,23 @@ export default function AutismPage() {
             className="max-w-4xl mx-auto"
           >
             <h2 className="serif text-4xl md:text-5xl font-bold mb-6">
-              Support Autism Programs
+              Help Us Support Children with Autism
             </h2>
             <p className="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed">
-              Early intervention makes all the difference for children with autism. Your support helps us provide 
-              specialized therapy and family support when it matters most.
+              Your support helps us provide specialized speech therapy and education to autistic children. Together, we can help every child reach their fullest potential.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="https://paypal.me/HHHOnline" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-50">
+                <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100">
                   Donate for Autism Support
                   <Heart className="ml-2 h-5 w-5" />
                 </Button>
               </a>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600">
-                Learn About Volunteering
-              </Button>
+              <Link href="/our-story/who-we-are">
+                <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100">
+                  Learn More About Our Work
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>
